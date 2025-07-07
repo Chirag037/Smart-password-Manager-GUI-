@@ -19,6 +19,7 @@ pip install cryptography pillow
 Installation
 
 Clone the repository:
+https://github.com/Chirag037/personal-finance
 
 cd smart-password-manager
 
