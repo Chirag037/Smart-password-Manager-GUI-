@@ -10,10 +10,12 @@ A secure, feature-rich password manager with a modern GUI built in Python. Keep 
 🛡️ Master Password: Single master password protects everything
 📝 Notes Support: Add notes to password entries
 🔄 Import/Export: Easy data management
-
+'''bash
 🚀 Quick Start
 Prerequisites
-bashpip install cryptography pillow
+
+'''bash 
+pip install cryptography pillow
 Installation
 
 Clone the repository:
@@ -58,6 +60,9 @@ Weak passwords
 Duplicate passwords
 Old passwords needing updates
 Overall security score
+
+
+this is best for personal password manager app which can also show how secure is our password based in input 
 
 
 
