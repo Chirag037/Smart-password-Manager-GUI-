@@ -1,3 +1,4 @@
+
 import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
 import json
@@ -5,6 +6,7 @@ import os
 import hashlib
 import secrets
 import string
+import base64
 from cryptography.fernet import Fernet
 from datetime import datetime, timedelta
 import re
@@ -703,6 +705,62 @@ class PasswordManagerGUI:
                 password_counts[password] = [site]
             
             # Check for old passwords (if created date available)
-            if 'created' in data:
+            created_str = data.get('created')
+            if created_str:
                 try:
-                    created_date = datetime.fromisoformat(data
+                    created_date = datetime.fromisoformat(created_str)
+                    if datetime.now() - created_date > timedelta(days=365):
+                        old_passwords.append((site, created_str[:10]))
+                except Exception:
+                    pass
+
+        # Report weak passwords
+        if weak_passwords:
+            self.analysis_text.insert(tk.END, "⚠️ Weak Passwords:\n")
+            for site, strength in weak_passwords:
+                self.analysis_text.insert(tk.END, f" - {site}: {strength}\n")
+            self.analysis_text.insert(tk.END, "\n")
+        else:
+            self.analysis_text.insert(tk.END, "✅ No weak passwords found.\n\n")
+
+        # Report duplicate passwords
+        for pwd, sites in password_counts.items():
+            if len(sites) > 1:
+                duplicate_passwords.append(sites)
+        if duplicate_passwords:
+            self.analysis_text.insert(tk.END, "⚠️ Duplicate Passwords:\n")
+            for sites in duplicate_passwords:
+                self.analysis_text.insert(tk.END, f" - {' , '.join(sites)}\n")
+            self.analysis_text.insert(tk.END, "\n")
+        else:
+            self.analysis_text.insert(tk.END, "✅ No duplicate passwords found.\n\n")
+
+        # Report old passwords
+        if old_passwords:
+            self.analysis_text.insert(tk.END, "⚠️ Old Passwords (over 1 year):\n")
+            for site, date in old_passwords:
+                self.analysis_text.insert(tk.END, f" - {site}: Created {date}\n")
+            self.analysis_text.insert(tk.END, "\n")
+        else:
+            self.analysis_text.insert(tk.END, "✅ No old passwords found.\n\n")
+
+        self.analysis_text.insert(tk.END, "=== INDIVIDUAL PASSWORD ANALYSIS ===\n\n")
+        for site, data in self.manager.passwords.items():
+            password = data['password']
+            analysis = PasswordStrengthAnalyzer.analyze_password(password)
+            self.analysis_text.insert(tk.END, f"🔐 Site: {site}\n")
+            self.analysis_text.insert(tk.END, f"Username: {data['username']}\n")
+            self.analysis_text.insert(tk.END, f"Strength: {analysis['strength']}\n")
+            if analysis['feedback']:
+                self.analysis_text.insert(tk.END, "Feedback:\n")
+                for feedback in analysis['feedback']:
+                    self.analysis_text.insert(tk.END, f" - {feedback}\n")
+            self.analysis_text.insert(tk.END, "-"*50 + "\n")
+
+# ================= MAIN ==================
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = PasswordManagerGUI(root)
+    root.mainloop()
+
+# this is best for personal data management and as passowrd analyzer .
