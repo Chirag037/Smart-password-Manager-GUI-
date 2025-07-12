@@ -11,7 +11,7 @@ A secure, feature-rich password manager with a modern GUI built in Python. Keep 
 📝 Notes Support: Add notes to password entries
 🔄 Import/Export: Easy data management
 '''bash
-🚀 Quick Start
+🚀 Quick Start  
 Prerequisites
 
 '''bash 
