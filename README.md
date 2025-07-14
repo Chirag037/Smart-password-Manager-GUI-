@@ -8,7 +8,7 @@ A secure, feature-rich password manager with a modern GUI built in Python. Keep 
 🔍 Search & Filter: Quickly find your passwords
 📱 Modern GUI: Clean, intuitive interface with tabbed navigation
 🛡️ Master Password: Single master password protects everything
-📝 Notes Support: Add notes to password entries
+📝 Notes Support: Add notes to password entries  
 🔄 Import/Export: Easy data management
 '''bash
 🚀 Quick Start  
