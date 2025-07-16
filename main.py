@@ -14,6 +14,7 @@ import threading
 import time
 from PIL import Image, ImageTk
 import webbrowser
+import cryptography 
 
 class PasswordStrengthAnalyzer:
     @staticmethod
