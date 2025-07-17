@@ -64,7 +64,7 @@ Overall security score
 
 
 this is best for personal password manager app which can also show how secure is our password based in input 
-
+  
 
 
 🛡️ Security Features
