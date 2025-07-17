@@ -78,6 +78,6 @@ Secure Random Generation: Cryptographically secure password generation
 
 
 
-If there are any error then raise an issue. i will try to resolve that issues.
+If there are any error then raise an issue. I will try to resolve that issues.
 
 
