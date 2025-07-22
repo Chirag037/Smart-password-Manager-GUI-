@@ -26,11 +26,10 @@ pip install cryptography pillow
 📦 Installation
 
 # Clone the repository
-git clone https://github.com/Chirag037/personal-finance
+git clone https://github.com/Chirag037/Smart-password-Manager-GUI-
 cd smart-password-manager
 
-# Install dependencies
-pip install -r requirements.txt
+
 
 # Run the application
 python password_manager.py
